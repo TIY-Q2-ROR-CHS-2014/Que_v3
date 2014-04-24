@@ -1,0 +1,30 @@
+%div.red_background
+  Dude man sup.
+
+.blue_background
+  Dude man also sup.
+
+%h4 These Guys are in Queue
+= link_to "I need help!", new_que_path
+%ul
+  - @people_in_que.each do |person|
+    %li{ class: "#{person.workflow_state}"}
+      = person.name
+      (#{person.workflow_state})
+      = person.created_at.strftime("%l:%M%p")
+      = link_to "Show", que_path(person)
+      |
+      = link_to "Edit", edit_que_path(person)
+      |
+      = link_to "Delete", que_path(person), method: :delete
+      |
+      = display_links(person)
+
+%h4 People Resolved
+
+- @people_who_are_inifintely_smarter_then_they_were_before_but_still_cant_spell.each do |person|
+  = person.name
+  helped at
+  = person.updated_at.strftime("%l:%M%p")
+  %br
+
